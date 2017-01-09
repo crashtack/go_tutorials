@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+	"math"
 )
 
 
@@ -15,4 +16,8 @@ func main() {
 		bytes := rand.Intn(10)
 		fmt.Print(bytes)
 	}
+
+	fmt.Println("\nThe time is", time.Now())
+	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
+	fmt.Println(math.Pi)
 }
