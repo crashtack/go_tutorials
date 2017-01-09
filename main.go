@@ -1,59 +1,49 @@
 package main
 
-import (
+import  (
 	"fmt"
-	"math/rand"
-	"time"
 	"math"
-	"math/cmplx"
 )
 
-func add(x, y int) int{
-	return x + y
-}
+const (
+	Pi = 3.1428
 
-func swap(x, y string) (string, string){
-	return y, x
-}
-
-func split(sum int) (x, y int){
-	x = sum * 4 / 9
-	y = sum - x
-	return
-}
-
-var (
-	ToBe	bool	 	= false
-	MaxInt	uint64		= 1<<64 - 1
-	z		complex128	= cmplx.Sqrt(-5 + 12i)
+	// Create a huge number by shifting a 1 bit left 100 places
+	// In other words, the binary number that is 1 followed by
+	// zeros.
+	Big = 1 << 100
+	// Shift if right again 99 places, so we end up
+	// with 1 << 1, or 2
+	Small = Big >> 99
 )
+
+func needInt(x int) int {
+	return x * 10 + 1
+}
+
+func needFloat(x float64) float64 {
+	return x * 0.1
+}
 
 func main() {
-	var c, python, java = true, false, "no?"
-	var j, k  = 1, 2
-	m := 3
+	var x, y int = 3, 4
+	var f float64 = math.Sqrt(float64(x * x + y * y))
+	var z uint = uint(f)
+	fmt.Println(x, y, z)
 
-	rand.Seed(time.Now().UnixNano())
-	fmt.Println("My favorite number is", rand.Intn(999))
+	v:= 42.0 // change me!
+	fmt.Printf("Type: '%T' Value: %v\n", v, v)
 
-	for i:=0; i < 10; i++ {
-		bytes := rand.Intn(10)
-		fmt.Print(bytes)
-	}
+	const World = "世界"
+	fmt.Println("Hello", World)
+	fmt.Println("Happy", Pi, "Day")
 
-	fmt.Println("\nThe time is", time.Now())
-	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
-	fmt.Println(math.Pi)
-	fmt.Println(add(12, 5))
+	const Truth = true
+	fmt.Println("Go rules?", Truth)
 
-	a, b := swap("hello", "world")
-	fmt.Println(a, b)
-
-	fmt.Println(split(17))
-
-	fmt.Println(j, k, m, c, python, java)
-
-	fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
-	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
-	fmt.Printf("Type: %T Value: %v\n", z, z)
+	// A Tour of Go 16 of 17
+	fmt.Println(needInt(Small))
+	fmt.Println(needFloat(Small))
+	fmt.Println(needFloat(Big))
+	//fmt.Println(needInt(Big))
 }
