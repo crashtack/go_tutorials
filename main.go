@@ -1,49 +1,44 @@
 package main
 
-import  (
+import (
 	"fmt"
 	"math"
 )
 
-const (
-	Pi = 3.1428
-
-	// Create a huge number by shifting a 1 bit left 100 places
-	// In other words, the binary number that is 1 followed by
-	// zeros.
-	Big = 1 << 100
-	// Shift if right again 99 places, so we end up
-	// with 1 << 1, or 2
-	Small = Big >> 99
-)
-
-func needInt(x int) int {
-	return x * 10 + 1
+func sqrt(x float64) string {
+	if x < 0 {
+		return sqrt(-x) + "i"
+	}
+	return fmt.Sprint(math.Sqrt(x))
 }
 
-func needFloat(x float64) float64 {
-	return x * 0.1
+func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v < lim {
+		return v
+	}
+	return lim
 }
 
 func main() {
-	var x, y int = 3, 4
-	var f float64 = math.Sqrt(float64(x * x + y * y))
-	var z uint = uint(f)
-	fmt.Println(x, y, z)
+	sum := 0
+	for i := 0; i < 10; i++ {
+		sum += i
+		fmt.Println(sum)
+	}
+	fmt.Println(sum)
 
-	v:= 42.0 // change me!
-	fmt.Printf("Type: '%T' Value: %v\n", v, v)
+	var loops int = 1
+	for sum < 1000 {
+		sum += sum
+		loops += 1
+	}
+	fmt.Printf("loops: %v sum: %v\n", loops, sum)
 
-	const World = "世界"
-	fmt.Println("Hello", World)
-	fmt.Println("Happy", Pi, "Day")
+	fmt.Println(sqrt(2), sqrt(-4))
 
-	const Truth = true
-	fmt.Println("Go rules?", Truth)
-
-	// A Tour of Go 16 of 17
-	fmt.Println(needInt(Small))
-	fmt.Println(needFloat(Small))
-	fmt.Println(needFloat(Big))
-	//fmt.Println(needInt(Big))
+	// Flow control 6/14
+	fmt.Println(
+		pow(3, 2, 10),
+		pow(3, 3, 20),
+	)
 }
